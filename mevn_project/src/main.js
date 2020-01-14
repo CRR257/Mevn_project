@@ -16,7 +16,7 @@ import VueAxios from 'vue-axios';
 Vue.use(VueAxios, axios)
 
 // URL base of our API
-axios.defaults.baseURL = 'http://localhost:3000/api';
+axios.defaults.baseURL = 'https://mevn-crr257.herokuapp.com/api';
 
 Vue.config.productionTip = false;
 
