@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 // connection de MongoAtlas
 const uri = "mongodb+srv://crr257:jllbRiwSlM9rdj3x@mevn-sjvpx.mongodb.net/mevn?retryWrites=true&w=majority";
 
-//const uri = 'mongodb://localhost:27017/mevn'; local connection
+//const uri = 'mongodb://localhost:27017/mevn'; //local connection
 const options = {
   useNewUrlParser: true, 
   useCreateIndex: true, 
@@ -37,12 +37,8 @@ app.use('/api', require('./routes/data'));
 
 // Middleware para Vue.js router modo history
 const history = require('connect-history-api-fallback');
-// app.use(history());
-app.use(history({
-  disableDotRule: true,
-  verbose: true
-}));
-app.use(express.static(path.join(__dirname, 'public/dist/index.html')));
+app.use(history());
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('puerto', process.env.PORT || 3000);
 app.listen(app.get('puerto'), () => {
