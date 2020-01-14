@@ -5,6 +5,22 @@ import path from 'path';
 
 const app = express();
 
+// Conection to DB
+const mongoose = require('mongoose');
+// connection de MongoAtlas
+const uri = "mongodb+srv://crr257:jllbRiwSlM9rdj3x@mevn-sjvpx.mongodb.net/mevn?retryWrites=true&w=majority";
+
+//const uri = 'mongodb://localhost:27017/mevn'; local connection
+const options = {
+  useNewUrlParser: true, 
+  useCreateIndex: true, 
+  useUnifiedTopology: true
+};
+mongoose.connect(uri, options).then(
+  () => { console.log('connected to mongoDB') },
+  err => { console.log('error to connect to mongoDB') }
+);
+
 // Middleware
 app.use(morgan('tiny'));
 app.use(cors());
@@ -16,6 +32,8 @@ app.use(express.urlencoded({ extended: true }));
 // app.get('/', (req, res) => {
 //   res.send('Hello World!');
 // });
+
+app.use('/api', require('./routes/data'));
 
 // Middleware para Vue.js router modo history
 const history = require('connect-history-api-fallback');
