@@ -1,13 +1,36 @@
 <template>
   <div id="app">
     <div id="nav">
+      <!-- <router-link to="/">Home</router-link> |
+      <router-link to="/login" v-if="!isActive">Login</router-link> |
+      <router-link to="/data" v-if="isActive">Data</router-link>
+      <button @click="closeSession()" v-if="isActive">Close Session</button> -->
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
+      <router-link to="/login">Login</router-link> |
       <router-link to="/data">Data</router-link>
+      <button @click="closeSession()">Close Session</button>
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+
+// import { mapActions, mapGetters } from "vuex";
+
+// export default {
+//   methods:{
+//     ...mapActions(['closeSession', 'readToken'])
+//   },
+//   computed:{
+//     ...mapGetters(['isActive'])
+//   },
+//   created(){
+//     this.readToken();
+//   }
+// }
+
+</script>
 
 <style lang="scss">
 #app {
