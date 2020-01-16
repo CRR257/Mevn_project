@@ -2,15 +2,25 @@ import express from "express";
 const router = express.Router();
 
 import Data from "../models/data";
+import User from "../models/user";
 
-router.post("/new-data", async (req, res) => {
-  const body = req.body;
+// Middlewares
+const {verificateAuth, verificateRol} = require('../middleware/autentication');
+
+//Rutes
+router.post("/new-data", verificateAuth, async (req, res) => {
+  let body = req.body;
+  console.log(req.user);
+  body.userId = req.user._id;
+
   try {
     const dataDB = await Data.create(body);
-    res.status(200).json(dataDB);
+    // res.status(200).json(dataDB);
+    return res.json(dataDB);
+
   } catch (error) {
     return res.status(500).json({
-      message: "An error has happened during application run",
+      message: "An error has happened during creation data",
       error
     });
   }
@@ -29,10 +39,15 @@ router.get("/data/:id", async (req, res) => {
   }
 });
  // get all data
-router.get("/data", async (req, res) => {
+router.get("/", verificateAuth, async (req, res) => {
+  
+  const userId = req.user._id;
+
   try {
-    const dataDB = await Data.find();
-    res.json(dataDB);
+    const dataDB = await Data.find({userId});
+    // res.json(dataDB);
+    return res.json(dataDB);
+
   } catch (error) {
     return res.status(400).json({
       message: "An error has happened during application run",

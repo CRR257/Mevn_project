@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <h1>data</h1>
     <b-alert
       :show="dismissCountDown"
       dismissible
@@ -75,6 +74,10 @@
 </template>
 
 <script>
+// import { mapState, mapMutations, mapActions } from "vuex";
+// import router from '../router';
+import { mapState, mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -84,19 +87,45 @@ export default {
       dismissCountDown: 0,
       addData: { name: "", description: "" },
       dataEdited: {},
-      edit: false
+      edit: false,
+      // user: {email: 'prueba1@bluuweb.cl', password: '123123'},
+      // messageLogin: ''
     };
   },
   created() {
     this.getData();
   },
+  computed: {
+  ...mapState(["token"])
+  },
   methods: {
+    // ...mapMutations(['getUser']),
+    // ...mapActions(['saveUser', 'readToken', 'closeSession']),
+    // login(){
+    //   this.axios.post('/login', this.user)
+    //     .then(res => {
+    //       // console.log(res.data.token);
+    //       const token = res.data.token;
+    //       // this.usuarioDB = res.data.usuarioDB
+    //       this.saveUser(token);
+    //     })
+    //     .catch(err => {
+    //       console.log(err.response.data.messageLogin);
+    //       this.message = err.response.data.messageLogin;
+    //     })
+    // },
+
     getData() {
+      let config = {
+        headers: {
+          token: this.token
+        }
+      }
       this.axios
-        .get("/data")
+        .get("/data", config)
         .then(res => {
           this.data = res.data;
-          console.log(res);
+          console.log(res.data);
         })
         .catch(e => {
           console.log(e.response);
@@ -104,20 +133,20 @@ export default {
     },
     addingData() {
       this.axios
-        .post("/new-data", this.addData)
+        .post("/new-data", this.addData, config)
         .then(res => {
           this.data.push(res.data);
           this.addData.name = "";
           this.addData.description = "";
           this.message.color = "success";
-          this.message.text = "user added correctly";
+          this.message.text = "User added correctly";
           this.showAlert();
         })
         .catch(e => {
           if (e.response.data.error.errors.name.message) {
             this.message.text = e.response.data.error.errors.name.message;
           } else {
-            this.message.text = "aa";
+            this.message.text = "Error system";
           }
           this.showAlert();
           this.message.color = "danger";
