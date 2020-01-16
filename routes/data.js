@@ -8,15 +8,17 @@ import User from "../models/user";
 const {verificateAuth, verificateRol} = require('../middleware/autentication');
 
 //Rutes
-router.post("/new-data", verificateAuth, async (req, res) => {
+router.post("/new-data", async (req, res) => {
   let body = req.body;
   console.log(req.user);
-  body.userId = req.user._id;
+  // body.userId = req.user._id;
 
   try {
     const dataDB = await Data.create(body);
     // res.status(200).json(dataDB);
-    return res.json(dataDB);
+    // return res.json(dataDB);
+    res.json(dataDB);
+
 
   } catch (error) {
     return res.status(500).json({
@@ -39,14 +41,16 @@ router.get("/data/:id", async (req, res) => {
   }
 });
  // get all data
-router.get("/", verificateAuth, async (req, res) => {
+router.get("/", async (req, res) => {
   
-  const userId = req.user._id;
+  // const userId = req.user._id;
 
   try {
-    const dataDB = await Data.find({userId});
-    // res.json(dataDB);
-    return res.json(dataDB);
+    // const dataDB = await Data.find({userId});
+
+    const dataDB = await Data.find();
+    res.json(dataDB);
+    //return res.json(dataDB);
 
   } catch (error) {
     return res.status(400).json({

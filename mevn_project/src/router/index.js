@@ -1,11 +1,13 @@
 import Vue from 'vue';
-// import VueRouter from 'vue-router';
+import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
+import Login from '../views/Login.vue';
+import Data from '../views/Data.vue';
 import store from '../store/index';
 
-Vue.use(Router);
+Vue.use(VueRouter);
 
-const router = new Router({
+const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -17,12 +19,14 @@ const router = new Router({
   {
     path: '/login',
     name: 'login',
-    component: () => import('../views/Login.vue')
+    // component: () => import('../views/Login.vue')
+    component: Login
   },
   {
     path: '/data',
     name: 'data',
-    component: () => import('../views/Data.vue')
+    // component: () => import('../views/Data.vue')
+    component: Data
   }
 ]
 });

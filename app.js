@@ -8,8 +8,8 @@ const app = express();
 // Conection to DB
 const mongoose = require('mongoose');
 // connection de MongoAtlas
-const uri = "mongodb+srv://crr257:jllbRiwSlM9rdj3x@mevn-sjvpx.mongodb.net/mevn?retryWrites=true&w=majority";
-//const uri = 'mongodb://localhost:27017/mevn'; //local connection
+// const uri = "mongodb+srv://crr257:jllbRiwSlM9rdj3x@mevn-sjvpx.mongodb.net/mevn?retryWrites=true&w=majority";
+const uri = 'mongodb://localhost:27017/mevn'; //local connection
 
 const options = {
   useNewUrlParser: true, 
@@ -32,8 +32,8 @@ app.use(express.urlencoded({ extended: true }));
 // app.get('/', (req, res) => {
 //   res.send('Hello World!');
 // });
-app.use('/data', require('./routes/data'));
-// app.use('/api', require('./routes/data'));
+//app.use('/data', require('./routes/data'));
+app.use('/api', require('./routes/data'));
 // app.use('/', indexRouter);
 // app.use('/user', usersRouter);
 app.use('/login', require('./routes/login'));
@@ -43,7 +43,7 @@ const history = require('connect-history-api-fallback');
 app.use(history());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.set('puerto', process.env.PORT || 3000);
-app.listen(app.get('puerto'), () => {
-  console.log('App listening on port'+ app.get('puerto'));
+app.set('port', process.env.PORT || 3000);
+app.listen(app.get('port'), () => {
+  console.log('App listening on port'+ app.get('port'));
 });

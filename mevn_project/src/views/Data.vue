@@ -76,7 +76,7 @@
 <script>
 // import { mapState, mapMutations, mapActions } from "vuex";
 // import router from '../router';
-import { mapState, mapActions } from "vuex";
+// import { mapState, mapActions } from "vuex";
 
 export default {
   data() {
@@ -93,11 +93,15 @@ export default {
     };
   },
   created() {
+    alert("pandet")
     this.getData();
   },
-  computed: {
-  ...mapState(["token"])
+  computed() {
+    alert("aaa")
   },
+  // computed: {
+  // ...mapState(["token"])
+  // },
   methods: {
     // ...mapMutations(['getUser']),
     // ...mapActions(['saveUser', 'readToken', 'closeSession']),
@@ -116,36 +120,36 @@ export default {
     // },
 
     getData() {
-      let config = {
-        headers: {
-          token: this.token
-        }
-      }
+      // let config = {
+      //   headers: {
+      //     token: this.token
+      //   }
+      // }
       this.axios
-        .get("/data", config)
+        // .get("/data", config)
+        .get("/")
         .then(res => {
           this.data = res.data;
           console.log(res.data);
         })
         .catch(e => {
-          console.log(e.response);
-        });
+          this.addData.name = ""
+          this.addData.description = ""
+          this.message.color = "success"
+          this.message.text = "User added correctly";
+          this.showAlert();
+           console.log(e.response);
+        })
     },
     addingData() {
       this.axios
-        .post("/new-data", this.addData, config)
+        .post("/new-data", this.addData)
         .then(res => {
           this.data.push(res.data);
-          this.addData.name = "";
-          this.addData.description = "";
-          this.message.color = "success";
-          this.message.text = "User added correctly";
-          this.showAlert();
         })
         .catch(e => {
           if (e.response.data.error.errors.name.message) {
-            this.message.text = e.response.data.error.errors.name.message;
-          } else {
+            this.message.text = e.respons
             this.message.text = "Error system";
           }
           this.showAlert();

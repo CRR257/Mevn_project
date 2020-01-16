@@ -13,12 +13,12 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
  
-Vue.use(VueAxios, axios)
+Vue.use(VueAxios, axios);
 
 // URL base of our API
 
-axios.defaults.baseURL = 'https://mevn-crr257.herokuapp.com/api';
-// axios.defaults.baseURL = 'http://localhost:3000/api';
+//axios.defaults.baseURL = 'https://mevn-crr257.herokuapp.com/api';
+axios.defaults.baseURL = 'http://localhost:3000/api';
 Vue.config.productionTip = false;
 
 new Vue({
