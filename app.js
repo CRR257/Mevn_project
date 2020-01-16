@@ -8,8 +8,8 @@ const app = express();
 // Conection to DB
 const mongoose = require('mongoose');
 // connection de MongoAtlas
-// const uri = "mongodb+srv://crr257:jllbRiwSlM9rdj3x@mevn-sjvpx.mongodb.net/mevn?retryWrites=true&w=majority";
-const uri = 'mongodb://localhost:27017/mevn'; //local connection
+const uri = "mongodb+srv://crr257:jllbRiwSlM9rdj3x@mevn-sjvpx.mongodb.net/mevn?retryWrites=true&w=majority";
+//const uri = 'mongodb://localhost:27017/mevn'; //local connection
 
 const options = {
   useNewUrlParser: true, 
