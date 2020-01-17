@@ -42,9 +42,7 @@ export default new Vuex.Store({
       }else{
         commit('getUser', '');
       }
-
     }
-
   },
   getters:{
     isActive: state => !!state.token

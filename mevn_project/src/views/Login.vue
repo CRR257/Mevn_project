@@ -14,7 +14,7 @@
         placeholder="pass"
         v-model="user.password"
       />
-      <b-button type="submit">Login!</b-button>
+      <b-button type="submit" >Login!</b-button>
     </form>
     <div v-if="messageLogin !== ''">
       <p>{{messageLogin}}</p>
@@ -29,7 +29,7 @@ import router from '../router';
 export default {
   data() {
     return {
-      user: {email: 'prueba1@bluuweb.cl', password: '123123'},
+      user: {email: 'email@gmail.com', password: ''},
       messageLogin: ''
     };
   },
@@ -41,7 +41,7 @@ export default {
         .then(res => {
           // console.log(res.data.token);
           const token = res.data.token;
-          // this.usuarioDB = res.data.usuarioDB
+          // this.userDB = res.data.userDB
           this.saveUser(token);
         })
         .catch(err => {

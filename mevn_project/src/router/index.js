@@ -1,8 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
 import Login from '../views/Login.vue';
-import Data from '../views/Data.vue';
 import store from '../store/index';
 
 Vue.use(VueRouter);
@@ -13,20 +11,18 @@ const router = new VueRouter({
   routes: [
   {
     path: '/',
-    name: 'home',
-    component: Home
+    name: 'login',
+    component: Login
   },
   {
-    path: '/login',
-    name: 'login',
-    // component: () => import('../views/Login.vue')
-    component: Login
+    path: '/home',
+    name: 'home',
+    component: () => import('../views/Home.vue')
   },
   {
     path: '/data',
     name: 'data',
-    // component: () => import('../views/Data.vue')
-    component: Data
+    component: () => import('../views/Data.vue')
   }
 ]
 });
@@ -43,10 +39,5 @@ router.beforeEach((to, from, next) => {
   }
 
 })
-// const router = new VueRouter({
-//   mode: 'history',
-//   base: process.env.BASE_URL,
-//   routes
-// })
 
 export default router;

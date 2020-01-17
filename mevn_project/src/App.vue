@@ -5,10 +5,10 @@
       <router-link to="/login" v-if="!isActive">Login</router-link> |
       <router-link to="/data" v-if="isActive">Data</router-link>
       <button @click="closeSession()" v-if="isActive">Close Session</button> -->
-      <router-link to="/">Home</router-link> |
-      <router-link to="/login">Login</router-link> |
+      <router-link to="/home">Home</router-link> |
+      <router-link to="/">Login</router-link> |
       <router-link to="/data">Data</router-link>
-      <button @click="closeSession()">Close Session</button>
+      <b-button @click="closeSession()" class="my-2 mx-5" variant="primary" size="sm">Close Session</b-button>
     </div>
     <router-view/>
   </div>

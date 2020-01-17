@@ -29,7 +29,7 @@
     </form>
 
      <form @submit.prevent="addingData()" v-if="!edit">
-      <h3 class="text-center">Add new data</h3>
+      <h5 class="text-center">Add new data</h5>
       <input
         type="text"
         placeholder="Add a name"
@@ -42,12 +42,11 @@
         class="form-control my-2"
         v-model="addData.description"
       />
-      <b-button class="btn-success my-2 btn-block" type="submit">Add</b-button>
+      <b-button class="btn-success my-3" type="submit">Add</b-button>
     </form>
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">#</th>
           <th scope="col">Name</th>
           <th scope="col">Description</th>
           <th scope="col">Date</th>
@@ -56,14 +55,12 @@
       </thead>
       <tbody>
         <tr v-for="(item, index) in data" :key="index">
-          <th scope="row">{{ item._id }}</th>
-          <td>{{ item.name }}</td>
+          <td scope="row">{{ item.name }}</td>
           <td>{{ item.description }}</td>
           <td>{{ item.date }}</td>
           <td>
-            <!-- <b-button @click="alert()">Action</b-button> -->
-            <b-button @click="deleteData(item._id)" class="btn-danger btn-sm mx-2">Delete</b-button>
-            <b-button @click="activeEditData(item._id)" class="btn-warning btn-sm">Edit</b-button>
+          <b-button @click="activeEditData(item._id)" class="btn-warning btn-sm">Edit</b-button>
+          <b-button @click="deleteData(item._id)" class="btn-danger btn-sm mx-2">Delete</b-button>
 
           </td>
 
@@ -74,9 +71,6 @@
 </template>
 
 <script>
-// import { mapState, mapMutations, mapActions } from "vuex";
-// import router from '../router';
-// import { mapState, mapActions } from "vuex";
 
 export default {
   data() {
@@ -88,43 +82,13 @@ export default {
       addData: { name: "", description: "" },
       dataEdited: {},
       edit: false,
-      // user: {email: 'prueba1@bluuweb.cl', password: '123123'},
-      // messageLogin: ''
     };
   },
   created() {
-    alert("pandet")
     this.getData();
   },
-  computed() {
-    alert("aaa")
-  },
-  // computed: {
-  // ...mapState(["token"])
-  // },
   methods: {
-    // ...mapMutations(['getUser']),
-    // ...mapActions(['saveUser', 'readToken', 'closeSession']),
-    // login(){
-    //   this.axios.post('/login', this.user)
-    //     .then(res => {
-    //       // console.log(res.data.token);
-    //       const token = res.data.token;
-    //       // this.usuarioDB = res.data.usuarioDB
-    //       this.saveUser(token);
-    //     })
-    //     .catch(err => {
-    //       console.log(err.response.data.messageLogin);
-    //       this.message = err.response.data.messageLogin;
-    //     })
-    // },
-
     getData() {
-      // let config = {
-      //   headers: {
-      //     token: this.token
-      //   }
-      // }
       this.axios
         // .get("/data", config)
         .get("/")
@@ -138,7 +102,7 @@ export default {
           this.message.color = "success"
           this.message.text = "User added correctly";
           this.showAlert();
-           console.log(e.response);
+          console.log(e.response);
         })
     },
     addingData() {
@@ -164,9 +128,6 @@ export default {
             .then(res => {
                 const index = this.data.findIndex( item => item._id === res.data._id);
                 this.data.splice(index, 1);
-                console.log(index)
-                console.log(res)
-                console.log(this.data)
                 this.message.color = "success";
                 this.message.text = "user deleted correctly";
                 this.showAlert();

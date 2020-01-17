@@ -1,7 +1,7 @@
 # Mevn_project 👩🏻‍💻_ _👨🏻‍💻
 
 ## Introduction
-App to practice CRUD (Create, Read, Update, and Delete) an user's DB.
+WIP - App to practice CRUD (Create, Read, Update, and Delete) an user's DB.
 
 https://mevn-crr257.herokuapp.com/
 
